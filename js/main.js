@@ -50,14 +50,27 @@
   }
 
   // ============================================
+  // UTILITIES
+  // ============================================
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  // ============================================
   // STICKY HEADER
   // ============================================
   function initStickyHeader() {
     if (!header) return;
 
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
       const currentScroll = window.pageYOffset;
 
       if (currentScroll > 50) {
@@ -65,9 +78,9 @@
       } else {
         header.classList.remove('scrolled');
       }
+    };
 
-      lastScroll = currentScroll;
-    });
+    window.addEventListener('scroll', debounce(handleScroll, 10));
   }
 
   // ============================================
@@ -338,9 +351,73 @@
   }
 
   // ============================================
+  // PRELOADER
+  // ============================================
+  function initPreloader() {
+    const preloader = document.querySelector('.preloader');
+    if (!preloader) return;
+
+    // Minimum display time to prevent flickering (500ms)
+    const minTime = 500;
+    const startTime = Date.now();
+
+    function hidePreloader() {
+      const elapsedTime = Date.now() - startTime;
+      const delay = Math.max(0, minTime - elapsedTime);
+
+      setTimeout(() => {
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 500); // Wait for transition
+      }, delay);
+    }
+
+    window.addEventListener('load', hidePreloader);
+
+    // Fallback in case load event doesn't fire or takes too long
+    setTimeout(hidePreloader, 5000);
+  }
+
+  // ============================================
+  // LAZY LOADING
+  // ============================================
+  function initLazyLoading() {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.classList.add('lazy-loaded');
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      lazyImages.forEach(img => {
+        imageObserver.observe(img);
+        // Handle images already in viewport or cached
+        if (img.complete) {
+          img.classList.add('lazy-loaded');
+        } else {
+          img.addEventListener('load', () => {
+            img.classList.add('lazy-loaded');
+          });
+        }
+      });
+    } else {
+      // Fallback for older browsers
+      lazyImages.forEach(img => img.classList.add('lazy-loaded'));
+    }
+  }
+
+  // ============================================
   // INITIALIZE
   // ============================================
   function init() {
+    initPreloader();
     initMobileNav();
     initStickyHeader();
     initSmoothScroll();
@@ -349,6 +426,7 @@
     initFormValidation();
     setActiveNavLink();
     initJobDetails();
+    initLazyLoading();
   }
 
   // Run on DOM ready
