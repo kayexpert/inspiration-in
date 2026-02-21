@@ -585,17 +585,10 @@ p:last-child {
   color: var(--color-primary);
 }
 
-.logo-icon {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-white);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-lg);
+.logo-image {
+  max-height: 52px;
+  width: auto;
+  object-fit: contain;
 }
 
 .nav {
@@ -2090,14 +2083,10 @@ p:last-child {
   margin-bottom: var(--space-5);
 }
 
-.footer-logo-icon {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.footer-logo-image {
+  max-height: 48px;
+  width: auto;
+  object-fit: contain;
 }
 
 .footer-text {
