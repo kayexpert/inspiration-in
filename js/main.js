@@ -232,96 +232,94 @@
   }
 
   // ============================================
-  // JOB DETAILS - Position Auto-Select
+  // JOB DETAILS & CAREERS PAGE - Dynamic Loading
   // ============================================
-  const jobData = {
-    'dsp': {
-      title: 'Direct Support Professional (DSP)',
-      description: 'Make a meaningful difference in the lives of adults with disabilities by providing compassionate, person-centered care in a supportive group home environment.',
-      responsibilities: [
-        'Provide direct care and support to residents in daily activities',
-        'Assist with personal care, meal preparation, and medication reminders',
-        'Support residents in community activities and outings',
-        'Document care activities and maintain accurate records',
-        'Communicate with team members and families'
-      ],
-      requirements: [
-        'High school diploma or equivalent',
-        'Experience in disability support preferred',
-        'Valid driver\'s license',
-        'Ability to pass background check',
-        'CPR/First Aid certification (or willingness to obtain)'
-      ],
-      schedule: 'Full-time and part-time positions available. Various shifts including days, evenings, weekends, and overnight opportunities.'
-    },
-    'manager': {
-      title: 'Residential Manager',
-      description: 'Lead our residential care team in providing exceptional support services while ensuring compliance with regulations and maintaining a safe, nurturing environment.',
-      responsibilities: [
-        'Oversee daily operations of the residential home',
-        'Supervise and mentor support staff',
-        'Coordinate individualized care plans for residents',
-        'Ensure compliance with state and federal regulations',
-        'Maintain communication with families and external agencies'
-      ],
-      requirements: [
-        'Bachelor\'s degree in related field',
-        '3+ years experience in residential care',
-        'Supervisory experience required',
-        'Valid driver\'s license',
-        'Strong organizational and leadership skills'
-      ],
-      schedule: 'Full-time position with on-call responsibilities.'
-    },
-    'overnight': {
-      title: 'Overnight Support Staff',
-      description: 'Provide essential overnight supervision and support to residents, ensuring their safety and comfort during nighttime hours.',
-      responsibilities: [
-        'Provide overnight supervision and support to residents',
-        'Respond to resident needs and emergencies',
-        'Assist with nighttime personal care as needed',
-        'Complete overnight documentation and reports',
-        'Ensure safety and security of the residence'
-      ],
-      requirements: [
-        'High school diploma or equivalent',
-        'Previous caregiving experience preferred',
-        'Ability to stay alert during overnight hours',
-        'Ability to pass background check',
-        'CPR/First Aid certification (or willingness to obtain)'
-      ],
-      schedule: 'Part-time overnight shifts available. Various schedules including weekdays and weekends.'
+  async function loadJobsData() {
+    try {
+      // Add cache-busting so client changes reflect immediately
+      const response = await fetch('jobs.json?v=' + new Date().getTime());
+      if (!response.ok) throw new Error('Network response was not ok');
+      return await response.json();
+    } catch (error) {
+      console.error('Error loading jobs:', error);
+      return [];
     }
-  };
+  }
 
-  function initJobDetails() {
+  async function initCareersJobs() {
+    const jobsContainer = document.getElementById('jobs-container');
+    if (!jobsContainer) return;
+
+    const jobs = await loadJobsData();
+    if (jobs.length === 0) {
+      jobsContainer.innerHTML = '<p>No open positions at this time. Please check back later.</p>';
+      return;
+    }
+
+    jobsContainer.innerHTML = jobs.map(job => `
+      <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+              <span>${job.title}</span>
+              <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m6 9 6 6 6-6" />
+              </svg>
+          </button>
+          <div class="accordion-content">
+              <div class="accordion-body">
+                  <p><strong>${job.type}</strong></p>
+                  <p>${job.summary}</p>
+                  <p class="mt-4"><a href="job-details.html?position=${job.id}"
+                          class="btn btn-primary btn-sm">Apply
+                          Now</a>
+                  </p>
+              </div>
+          </div>
+      </div>
+    `).join('');
+
+    // Re-initialize accordion for the new elements
+    const newItems = jobsContainer.querySelectorAll('.accordion-item');
+    newItems.forEach(item => {
+      const header = item.querySelector('.accordion-header');
+      if (!header) return;
+
+      header.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
+
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          header.click();
+        }
+      });
+    });
+  }
+
+  async function initJobDetails() {
     const urlParams = new URLSearchParams(window.location.search);
     const position = urlParams.get('position');
     const positionInput = document.getElementById('position');
     const jobTitleEl = document.getElementById('job-title');
 
     if (!positionInput || !position) return;
-
-    // Set the hidden position field
     positionInput.value = position;
 
-    // Update job details if the data exists
-    if (jobData[position] && jobTitleEl) {
-      const job = jobData[position];
+    const jobs = await loadJobsData();
+    const job = jobs.find(j => j.id === position);
 
-      // Update title
+    if (job && jobTitleEl) {
       jobTitleEl.textContent = job.title;
-
-      // Update page title
       document.title = `${job.title} | Inspiration Inn`;
 
-      // Update description
       const descEl = jobTitleEl.nextElementSibling;
       if (descEl && descEl.classList.contains('text-lead')) {
         descEl.textContent = job.description;
       }
 
-      // Update responsibilities list
       const responsibilitiesHeader = document.querySelector('h3:first-of-type');
       if (responsibilitiesHeader) {
         const responsibilitiesList = responsibilitiesHeader.nextElementSibling;
@@ -330,7 +328,6 @@
         }
       }
 
-      // Update requirements list
       const requirementsHeader = document.querySelectorAll('h3')[1];
       if (requirementsHeader) {
         const requirementsList = requirementsHeader.nextElementSibling;
@@ -339,7 +336,6 @@
         }
       }
 
-      // Update schedule
       const scheduleHeader = document.querySelectorAll('h3')[2];
       if (scheduleHeader) {
         const scheduleP = scheduleHeader.nextElementSibling;
@@ -425,6 +421,7 @@
     initScrollAnimations();
     initFormValidation();
     setActiveNavLink();
+    initCareersJobs();
     initJobDetails();
     initLazyLoading();
   }

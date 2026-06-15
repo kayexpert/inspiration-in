@@ -84,7 +84,7 @@
                                 </div>
                                 <div>
                                     <p class="contact-label">Address</p>
-                                    <p class="contact-value">123 Care Street<br>Cityville, ST 12345</p>
+                                    <p class="contact-value">Ottawa, Ontario</p>
                                 </div>
                             </div>
                             <div class="contact-item">
@@ -124,9 +124,7 @@
                                 </div>
                                 <div>
                                     <p class="contact-label">Office Hours</p>
-                                    <p class="contact-value">Mon - Fri: 9:00 AM - 5:00 PM<br><span
-                                            style="font-size: var(--font-size-sm); color: var(--color-text-muted);">Care
-                                            services available 24/7</span></p>
+                                    <p class="contact-value">Mon - Fri: 9:00 AM - 5:00 PM</p>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +134,8 @@
                     <div class="fade-in fade-in-delay-2">
                         <div class="card">
                             <h3 style="margin-bottom: var(--space-6);">Send Us a Message</h3>
-                            <form data-validate id="contact-form">
+                            <form data-validate id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                                <input type="hidden" name="access_key" value="56543fc5-aee7-4fab-8a14-79ba3c2e6aa0">
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label class="form-label" for="name">Your Name <span

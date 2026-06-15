@@ -2947,3 +2947,19 @@ p:last-child {
     border-radius: var(--radius-lg);
   }
 }
+
+/* Feature List Inline Styles */
+.about-feature, .about-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.about-feature-icon, .about-check {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}

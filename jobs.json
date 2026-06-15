@@ -1,0 +1,68 @@
+[
+  {
+    "id": "dsp",
+    "title": "Direct Support Professional (DSP)",
+    "description": "Make a meaningful difference in the lives of adults with disabilities by providing compassionate, person-centered care in a supportive group home environment.",
+    "type": "Full-time & Part-time positions available",
+    "summary": "Provide direct care and support to residents in daily activities. Assist with personal care, meal preparation, medication reminders, and community activities. High school diploma required; experience in disability support preferred.",
+    "responsibilities": [
+      "Provide direct care and support to residents in daily activities",
+      "Assist with personal care, meal preparation, and medication reminders",
+      "Support residents in community activities and outings",
+      "Document care activities and maintain accurate records",
+      "Communicate with team members and families"
+    ],
+    "requirements": [
+      "High school diploma or equivalent",
+      "Experience in disability support preferred",
+      "Valid driver's license",
+      "Ability to pass background check",
+      "CPR/First Aid certification (or willingness to obtain)"
+    ],
+    "schedule": "Full-time and part-time positions available. Various shifts including days, evenings, weekends, and overnight opportunities."
+  },
+  {
+    "id": "manager",
+    "title": "Residential Manager",
+    "description": "Lead our residential care team in providing exceptional support services while ensuring compliance with regulations and maintaining a safe, nurturing environment.",
+    "type": "Full-time position",
+    "summary": "Oversee daily operations of the residential home. Supervise staff, coordinate care plans, ensure compliance with regulations, and maintain a safe environment. Bachelor's degree and 3+ years experience in residential care required.",
+    "responsibilities": [
+      "Oversee daily operations of the residential home",
+      "Supervise and mentor support staff",
+      "Coordinate individualized care plans for residents",
+      "Ensure compliance with state and federal regulations",
+      "Maintain communication with families and external agencies"
+    ],
+    "requirements": [
+      "Bachelor's degree in related field",
+      "3+ years experience in residential care",
+      "Supervisory experience required",
+      "Valid driver's license",
+      "Strong organizational and leadership skills"
+    ],
+    "schedule": "Full-time position with on-call responsibilities."
+  },
+  {
+    "id": "overnight",
+    "title": "Overnight Support Staff",
+    "description": "Provide essential overnight supervision and support to residents, ensuring their safety and comfort during nighttime hours.",
+    "type": "Part-time overnight shifts",
+    "summary": "Provide overnight supervision and support to residents. Respond to emergencies, assist with nighttime needs, and ensure safety throughout the night. Previous caregiving experience preferred.",
+    "responsibilities": [
+      "Provide overnight supervision and support to residents",
+      "Respond to resident needs and emergencies",
+      "Assist with nighttime personal care as needed",
+      "Complete overnight documentation and reports",
+      "Ensure safety and security of the residence"
+    ],
+    "requirements": [
+      "High school diploma or equivalent",
+      "Previous caregiving experience preferred",
+      "Ability to stay alert during overnight hours",
+      "Ability to pass background check",
+      "CPR/First Aid certification (or willingness to obtain)"
+    ],
+    "schedule": "Part-time overnight shifts available. Various schedules including weekdays and weekends."
+  }
+]

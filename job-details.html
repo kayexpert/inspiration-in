@@ -106,7 +106,8 @@
                     <div class="card fade-in fade-in-delay-2" style="padding: var(--space-6);">
                         <h3 style="margin-bottom: var(--space-4); color: var(--color-primary);">Apply for This Position
                         </h3>
-                        <form id="application-form" class="contact-form">
+                        <form id="application-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="access_key" value="56543fc5-aee7-4fab-8a14-79ba3c2e6aa0">
                             <!-- Hidden field for position -->
                             <input type="hidden" id="position" name="position" value="">
 
