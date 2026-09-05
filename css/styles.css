@@ -10,15 +10,15 @@
    ============================================ */
 :root {
   /* Colors - Primary Palette */
-  --color-primary: #2D6A4F;
-  --color-primary-light: #40916C;
-  --color-primary-dark: #1B4332;
-  --color-primary-50: #d8f3dc;
+  --color-primary: #E07A5F;
+  --color-primary-light: #E8998D;
+  --color-primary-dark: #C65D42;
+  --color-primary-50: #FBE9E7;
 
   /* Colors - Secondary/Accent */
-  --color-secondary: #E07A5F;
-  --color-secondary-light: #E8998D;
-  --color-secondary-dark: #C65D42;
+  --color-secondary: #8B5E3C;
+  --color-secondary-light: #A67B5B;
+  --color-secondary-dark: #5D4037;
 
   /* Colors - Accent */
   --color-accent: #D4A574;
@@ -33,15 +33,15 @@
   --color-border-light: #F0F1F2;
 
   /* Colors - Text */
-  --color-text-primary: #1A2E1F;
-  --color-text-secondary: #4A5759;
-  --color-text-muted: #6B7B7E;
-  --color-text-light: #8A9496;
+  --color-text-primary: #3E2723;
+  --color-text-secondary: #5D4037;
+  --color-text-muted: #795548;
+  --color-text-light: #A1887F;
   --color-text-inverse: #FFFFFF;
 
   /* Colors - Grays */
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
+  --color-gray-100: #F5F3F0;
+  --color-gray-200: #E8E4E0;
 
   /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -678,7 +678,7 @@ p:last-child {
   min-height: 90vh;
   display: flex;
   align-items: center;
-  background: url('../images/admision-pro2.jpg') center center / cover no-repeat;
+  background: url('../images/admision-pro2.png') center center / cover no-repeat;
   overflow: hidden;
 }
 
@@ -691,10 +691,10 @@ p:last-child {
   width: 65%;
   height: 100%;
   background: linear-gradient(90deg,
-      rgba(45, 106, 79, 0.95) 0%,
-      rgba(45, 106, 79, 0.9) 50%,
-      rgba(45, 106, 79, 0.8) 80%,
-      rgba(45, 106, 79, 0) 100%);
+      rgba(224, 122, 95, 0.95) 0%,
+      rgba(224, 122, 95, 0.9) 50%,
+      rgba(224, 122, 95, 0.8) 80%,
+      rgba(224, 122, 95, 0) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -892,7 +892,7 @@ p:last-child {
   overflow: hidden;
 }
 
-/* Green color overlay */
+/* Primary color overlay */
 .page-hero::before {
   content: '';
   position: absolute;
@@ -900,7 +900,7 @@ p:last-child {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(45, 106, 79, 0.92) 0%, rgba(27, 67, 50, 0.95) 100%);
+  background: linear-gradient(135deg, rgba(224, 122, 95, 0.92) 0%, rgba(198, 93, 66, 0.95) 100%);
   z-index: 1;
 }
 
@@ -968,7 +968,7 @@ p:last-child {
 }
 
 .section-tag {
-  color: var(--color-secondary);
+  color: var(--color-primary);
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-sm);
   text-transform: uppercase;
@@ -977,12 +977,6 @@ p:last-child {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-}
-
-.section-tag svg {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
 }
 
 .section-title {
@@ -1179,7 +1173,7 @@ p:last-child {
 
 /* Hover State - Overlay expands upward */
 .service-card:hover .service-content {
-  background: #1B2A4E;
+  background: var(--color-secondary-dark);
   bottom: 20px;
   padding-bottom: var(--space-6);
 }
@@ -1287,7 +1281,7 @@ p:last-child {
 
 /* Content Area */
 .about-tagline {
-  color: var(--color-secondary);
+  color: var(--color-primary);
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-sm);
   text-transform: uppercase;
@@ -1296,11 +1290,6 @@ p:last-child {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-}
-
-.about-tagline svg {
-  width: 16px;
-  height: 16px;
 }
 
 .about-title {
@@ -1457,7 +1446,7 @@ p:last-child {
   align-items: center;
   padding: var(--space-20) 0;
   background-color: var(--color-white);
-  background-image: url('../images/admision-pro.jpg');
+  background-image: url('../images/admision-pro.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1499,7 +1488,7 @@ p:last-child {
 }
 
 .process-tagline {
-  color: var(--color-secondary);
+  color: var(--color-primary);
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-xs);
   text-transform: uppercase;
@@ -1508,11 +1497,6 @@ p:last-child {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-}
-
-.process-tagline svg {
-  width: 14px;
-  height: 14px;
 }
 
 .process-heading {
@@ -2243,7 +2227,7 @@ p:last-child {
   position: absolute;
   top: 10%;
   left: -20px;
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary);
   color: var(--color-white);
   padding: var(--space-4) var(--space-6);
   border-radius: var(--radius-lg);
@@ -2254,11 +2238,6 @@ p:last-child {
   z-index: 3;
   font-weight: var(--font-weight-bold);
   line-height: 1.2;
-}
-
-.pic-badge svg {
-  width: 32px;
-  height: 32px;
 }
 
 .pic-content {
@@ -2516,10 +2495,10 @@ p:last-child {
   .hero::before {
     width: 100%;
     background: linear-gradient(180deg,
-        rgba(45, 106, 79, 0.90) 0%,
-        rgba(45, 106, 79, 0.80) 40%,
-        rgba(45, 106, 79, 0.70) 70%,
-        rgba(45, 106, 79, 0.60) 100%);
+        rgba(224, 122, 95, 0.90) 0%,
+        rgba(224, 122, 95, 0.80) 40%,
+        rgba(224, 122, 95, 0.70) 70%,
+        rgba(224, 122, 95, 0.60) 100%);
   }
 
   .hero-inner {
@@ -2907,7 +2886,7 @@ p:last-child {
     text-align: left;
     gap: var(--space-4);
     padding: var(--space-4);
-    background: rgba(45, 106, 79, 0.05);
+    background: rgba(224, 122, 95, 0.05);
     border-radius: var(--radius-lg);
   }
 
